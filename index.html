@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counselling Assistant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #1a1a1a;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Outfit', sans-serif;
+      color: #fff;
+    }
+
+    .inner-body {
+      background-color: #242424;
+      width: 100%;                
+      max-width: 1750px;          
+      min-height: 90vh;
+      padding:38px;
+      border-radius: 12px;       
+      box-shadow: 0 0 15px rgba(0,0,0,0.3); 
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;      
+      text-align: center;
+      transform: translateX(33px);
+      position: relative;
+    }
+
+    /* APEX brand */
+    .brand {
+      position: absolute;
+      top: 1px;
+      left: 20px;
+      font-size: 34px;
+      font-weight: 400;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+    }
+
+    .logo{
+      position: absolute;
+      top: 330px;
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: 72px;
+      height: auto;
+    }
+
+    /* Outer logo */
+    .outer-logo {
+      position: fixed;
+      top: 1px;
+      left: -58px;
+      max-width: 42px;
+      height: auto;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .outer-logo:hover {
+      transform: scale(1.1);
+    }
+
+    /* Grad hat logo */
+    .grad-hat {
+      position: fixed;
+      top: 50px;
+      left: -73px;
+      max-width: 70px;
+      height: auto;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .grad-hat:hover {
+      transform: scale(1.1);
+    }
+
+  .pnc {
+    position: fixed;
+    top: 115px;  
+    left: -68px;
+    max-width: 60px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  .pnc:hover {
+    transform: scale(1.1);
+  }
+
+    .inner-body h1 {
+      font-size: 30px; 
+      font-weight: normal;       
+      letter-spacing: -0.05em;   
+      margin-bottom: 25px;
+    }
+
+    .chatbox {
+      background: #1c1c1c;
+      padding: 10px 14px;
+      border-radius: 40px;
+      box-shadow: 0 0 10px rgba(206, 212, 218, 0.2);
+      transition: box-shadow 0.3s ease;
+      width: 700px; 
+      height: 62px;   
+      display: flex;
+      align-items: center;
+      margin-top: 2px;
+      box-sizing: border-box;
+    }
+    .chatbox:hover {
+      box-shadow: 0 0 20px rgba(206, 212, 218, 0.6);
+    }
+    .chatbox input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: #CED4DA;
+      font-size: 1rem;
+      text-align: left;
+      padding-right: 10px;
+      min-width: 0;
+    }
+
+    /* Button group */
+    .btn-group {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Mic button */
+    .mic-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      position: relative;
+      z-index: 1;
+      transform: translateX(0);
+      transition: transform 0.3s ease;
+    }
+    .mic-btn img {
+      width: 40px;
+      height: 40px;
+    }
+
+    /* Send button with circular background */
+    .send-btn {
+      background: #2b2b2b;     
+      border-radius: 50%;
+      padding: 8px;
+      opacity: 0;
+      transform: scale(0.8);
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+      transition: all 0.3s ease;
+    }
+    .send-btn:hover {
+      background: #7e7e7e;
+    }
+    .send-btn img {
+      width: 30px;
+      height: 30px;
+      filter: brightness(0) invert(1);
+    }
+    .send-btn.show {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+
+    .mic-btn.shift {
+      transform: translateX(-50px);
+    }
+  </style>
+</head>
+<body>
+  <div class="inner-body">
+    <!-- APEX text -->
+    <div class="brand">apex</div>
+
+    <img src="logo.png" alt="Logo" class="logo">
+    <!-- Logo in outer body top-left -->
+    <img src="logo.png" alt="Logo" class="outer-logo" onclick="location.reload()">
+
+    <!-- Graduation hat logo -->
+    <img src="courses.png" alt="courses" class="grad-hat">
+    <!-- Graduation hat logo (Courses) -->
+    <a href="https://iiitbhopal.ac.in/#/website/contentpage/M0002/SM0035" target="_blank">
+      <img src="courses.png" alt="courses" class="grad-hat">
+    </a>
+
+    <!-- placements -->
+    <img src="placements.png" alt="placement" class="pnc">
+    <h1 id="dynamic-text"></h1>
+    <!-- Placements PDF link -->
+    <a href="https://iiitbhopal.ac.in/#/website/contentpage/M0005/SM0032/NSM0046" target="_blank">
+      <img src="placements.png" alt="placement" class="pnc">
+    </a>
+
+    <div class="chatbox">
+      <input id="chatInput" type="text" placeholder="Ask anything...">
+      <div class="btn-group">
+        <button class="mic-btn" id="micBtn">
+          <img src="unmute.png" alt="Mic">
+        </button>
+        <button class="send-btn" id="sendBtn">
+          <img src="send.png" alt="Send">
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Rotating phrases
+    const phrases = [
+      "Your counselling assistant is here.",
+      "How can I help you today?",
+      "Ask me anything, I'm here to assist.",
+    ];
+    document.getElementById('dynamic-text').innerText =
+      phrases[Math.floor(Math.random() * phrases.length)];
+
+    const chatInput = document.getElementById("chatInput");
+    const sendBtn = document.getElementById("sendBtn");
+    const micBtn = document.getElementById("micBtn");
+
+    // Show/hide send button
+    chatInput.addEventListener('input', () => {
+      if (chatInput.value.trim()) {
+        sendBtn.classList.add('show');
+        micBtn.classList.add('shift');
+      } else {
+        sendBtn.classList.remove('show');
+        micBtn.classList.remove('shift');
+      }
+    });
+
+    function sendMessage() {
+      if (!chatInput.value.trim()) return;
+      alert('Message sent: ' + chatInput.value);
+      chatInput.value = '';
+      sendBtn.classList.remove('show');
+      micBtn.classList.remove('shift');
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+
+    micBtn.addEventListener('click', () => {
+      navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(() => alert("Microphone access granted!"))
+        .catch(() => alert("Microphone access denied."));
+    });
+  </script>
+</body>
+</html>
